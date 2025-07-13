@@ -26,11 +26,6 @@ jobs:
       matrix:
         node-version: [ 24 ]  # 使用 Node.js 24 版本，与本地环境保持一致
     
-    # 部署环境配置
-    environment:
-      name: github-pages  # 环境名称
-      url: ${{ steps.deployment.outputs.page_url }}  # 部署后的网站 URL
-    
     # 执行步骤
     steps:
       # 步骤 1：检出代码
