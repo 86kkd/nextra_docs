@@ -1,0 +1,67 @@
+# GitHub Actions 工作流名称，会显示在 Actions 页面
+name: Deploy
+
+# 定义触发条件
+on:
+  workflow_dispatch: { }  # 允许手动触发工作流（在 GitHub 页面点击运行）
+  push:
+    branches:
+      - main  # 当代码推送到 main 分支时自动触发
+
+# 定义工作流权限
+permissions:
+  contents: write  # 授予写入仓库内容的权限（部署时需要创建/修改文件）
+
+# 定义任务
+jobs:
+  build-and-deploy:  # 任务名称
+    # 防止同一分支的多个工作流同时运行，避免部署冲突
+    concurrency: ci-${{ github.ref }}
+    
+    # 指定运行环境为最新版 Ubuntu
+    runs-on: ubuntu-latest
+    
+    # 策略矩阵：可以在多个版本上测试（这里只用一个版本）
+    strategy:
+      matrix:
+        node-version: [ 24 ]  # 使用 Node.js 24 版本，与本地环境保持一致
+    
+    # 部署环境配置
+    environment:
+      name: github-pages  # 环境名称
+      url: ${{ steps.deployment.outputs.page_url }}  # 部署后的网站 URL
+    
+    # 执行步骤
+    steps:
+      # 步骤 1：检出代码
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3  # 使用官方 checkout action
+        with:
+          fetch-depth: 0  # 获取完整的 git 历史记录（某些构建工具可能需要）
+      
+      # 步骤 2：设置 Bun 环境
+      - name: Setup Bun ⚡️
+        uses: oven-sh/setup-bun@v1  # 使用官方 Bun setup action
+        with:
+          bun-version: latest  # 安装最新版本的 Bun
+      
+      # 步骤 3：设置 Node.js 环境
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3  # 使用官方 Node.js setup action
+        with:
+          node-version: ${{ matrix.node-version }}  # 使用矩阵中定义的 Node.js 版本
+      
+      # 步骤 4：安装项目依赖
+      - name: Install dependencies ⚡️
+        run: bun install  # 使用 Bun 安装 package.json 中定义的所有依赖包
+      
+      # 步骤 5：构建项目
+      - name: Build 🛠️
+        run: bun run build  # 执行构建命令，生成静态文件
+      
+      # 步骤 6：部署到 GitHub Pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4  # 使用第三方部署 action
+        with:
+          folder: out  # 指定要部署的文件夹（构建输出目录）
+          branch: gh-pages  # 部署到 gh-pages 分支（GitHub Pages 默认分支）
