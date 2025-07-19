@@ -1,3 +1,70 @@
-# Welcome to Inner space
- 
-Hello, Nextra!!!
+---
+title: "技术探索与知识分享"
+description: "深入研究AI/ML、强化学习、计算机视觉等前沿技术"
+---
+
+import { Feature, Features } from '../app/_components/features'
+import Link from 'next/link'
+import styles from './home.module.css'
+
+
+<div className={`${styles.featuresContainer} x:border-b nextra-border`}>
+  <div className={styles.contentContainer}>
+    <Features>
+      <Feature
+        index={0}
+        large
+        centered
+        id="rl-card"
+        href="/Algorithm/rl"
+      >
+        <h3>
+          Reinforcement Learning{' '}
+          <br className={styles.showOnMobile} />
+          Research
+        </h3>
+        <div className="mb-4">
+          深入研究强化学习算法，包括Q-Learning、DQN、策略梯度等核心方法。
+          从理论到实践，探索智能体如何通过与环境交互来学习最优策略。
+        </div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">
+          • Q-Learning & DQN • Policy Gradient • On/Off Policy Methods
+        </div>
+      </Feature>
+
+      <Feature
+        index={5}
+        centered
+        className={`${styles.featSystemTips} flex items-center justify-center`}
+        href="/tricks"
+      >
+        <h3>
+          System Tips &{' '}
+          <br className={styles.showOnMobile} />
+          Optimization
+        </h3>
+        <div className="mb-4 text-center">
+          Arch Linux系统优化、输入法配置、时区设置等实用技巧。
+          让系统运行更加流畅高效。
+        </div>
+        <div className="text-sm text-gray-600 dark:text-gray-400 text-center">
+          • Arch Linux • System Optimization • Configuration Tips
+        </div>
+      </Feature>
+
+      <Feature index={10} large>
+        <h3>And more to explore...</h3>
+        <div>
+          深度学习 / 机器学习 / 嵌入式开发 / 系统优化 / 开源贡献...
+          <br />
+          更多技术领域等待探索和分享。
+        </div>
+        <div className={styles.subtitle}>
+          <Link className="no-underline" href="/Algorithm">
+            开始探索 →
+          </Link>
+        </div>
+      </Feature>
+    </Features>
+  </div>
+</div>
