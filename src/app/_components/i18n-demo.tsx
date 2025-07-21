@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRightIcon } from '@components/icons'
+import { ArrowRightIcon } from './../../components/icons'
 import cn from 'clsx'
 import type { FC } from 'react'
 import { useState } from 'react'

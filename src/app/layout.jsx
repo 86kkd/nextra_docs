@@ -6,6 +6,13 @@ import "nextra-theme-docs/style.css";
 export const metadata = {
   // Define your metadata here
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', type: 'image/x-icon' }
+    ],
+    apple: '/favicon.svg'
+  }
 };
 
 const banner = <Banner storageKey="some-key">Nextra 4.0 is released 🎉</Banner>;
