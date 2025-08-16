@@ -61,6 +61,74 @@ ssh device2
 
 This method keeps Device 2 always accessible through automatic reconnection.
 
+### Server Configuration Required (If Connection Refused)
+
+If the server refuses connections, you need to configure SSH daemon properly:
+
+#### Edit SSH Configuration on Server:
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Add or modify these settings:
+```
+# Allow TCP forwarding
+AllowTcpForwarding yes
+
+# Allow gateway ports (for reverse tunnels)
+GatewayPorts clientspecified
+# Or use 'yes' for all interfaces (less secure)
+# GatewayPorts yes
+
+# Keep connections alive
+ClientAliveInterval 30
+ClientAliveCountMax 3
+
+# Allow specific users (optional, more secure)
+AllowUsers user1 user2
+
+# Permit tunnel (some distributions need this)
+PermitTunnel yes
+
+# Max sessions per connection
+MaxSessions 10
+
+# Max startups (prevent connection refused under load)
+MaxStartups 10:30:100
+```
+
+#### Apply Changes:
+```bash
+# Validate configuration
+sudo sshd -t
+
+# Restart SSH service
+sudo systemctl restart sshd
+# Or on older systems
+sudo service ssh restart
+```
+
+#### Check Firewall Rules:
+```bash
+# Check if port 22 is open
+sudo ufw status
+# If using ufw, allow SSH
+sudo ufw allow ssh
+
+# For iptables
+sudo iptables -L -n | grep 22
+# Allow SSH if needed
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+```
+
+#### Verify SSH is Listening:
+```bash
+# Check SSH is running
+sudo systemctl status sshd
+# Check listening ports
+sudo ss -tlnp | grep :22
+```
+
 ### Step 1: Install autossh on Device 2
 ```bash
 # Ubuntu/Debian
