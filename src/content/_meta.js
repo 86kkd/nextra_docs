@@ -15,4 +15,8 @@ export default {
     title: "Development",
     type: "page",
   },
+  front: {
+    title: "Front",
+    type: "page",
+  },
 };

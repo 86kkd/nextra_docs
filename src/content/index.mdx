@@ -1,70 +1,57 @@
 ---
-title: "技术探索与知识分享"
+title: "技术探索与知识分享"  
 description: "深入研究AI/ML、强化学习、计算机视觉等前沿技术"
 ---
 
-import { Feature, Features } from '../app/_components/features'
-import Link from 'next/link'
-import styles from './home.module.css'
+import { HeroSection } from '../app/_components/hero-section'
+import { EnhancedFeature } from '../app/_components/features/enhanced-feature'
 
 
-<div className={`${styles.featuresContainer} x:border-b nextra-border`}>
-  <div className={styles.contentContainer}>
-    <Features>
-      <Feature
-        index={0}
-        large
-        centered
-        id="rl-card"
-        href="/Algorithm/rl"
-      >
-        <h3>
-          Reinforcement Learning{' '}
-          <br className={styles.showOnMobile} />
-          Research
-        </h3>
-        <div className="mb-4">
-          深入研究强化学习算法，包括Q-Learning、DQN、策略梯度等核心方法。
-          从理论到实践，探索智能体如何通过与环境交互来学习最优策略。
-        </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400">
-          • Q-Learning & DQN • Policy Gradient • On/Off Policy Methods
-        </div>
-      </Feature>
+{/* Hero section with animations and interactive effects */}
+<HeroSection />
 
-      <Feature
-        index={5}
-        centered
-        className={`${styles.featSystemTips} flex items-center justify-center`}
-        href="/tricks"
-      >
-        <h3>
-          System Tips &{' '}
-          <br className={styles.showOnMobile} />
-          Optimization
-        </h3>
-        <div className="mb-4 text-center">
-          Arch Linux系统优化、输入法配置、时区设置等实用技巧。
-          让系统运行更加流畅高效。
-        </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400 text-center">
-          • Arch Linux • System Optimization • Configuration Tips
-        </div>
-      </Feature>
 
-      <Feature index={10} large>
-        <h3>And more to explore...</h3>
-        <div>
-          深度学习 / 机器学习 / 嵌入式开发 / 系统优化 / 开源贡献...
-          <br />
-          更多技术领域等待探索和分享。
-        </div>
-        <div className={styles.subtitle}>
-          <Link className="no-underline" href="/Algorithm">
-            开始探索 →
-          </Link>
-        </div>
-      </Feature>
-    </Features>
+{/* Enhanced feature cards section */}
+<div className="max-w-6xl mx-auto px-6 py-20">
+  <h2 className="text-4xl font-bold text-center mb-12 gradient-text">
+    探索技术领域
+  </h2>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+    <EnhancedFeature
+      title="Machine Learning"
+      description="深入探索机器学习算法，从基础的线性回归到复杂的深度神经网络，理解AI背后的数学原理。"
+      tags={["PyTorch", "TensorFlow", "Scikit-learn"]}
+      href="/Algorithm"
+      icon="🤖"
+      gradient="from-blue-500 to-cyan-500"
+      delay={0.1}
+    />
+    
+    <EnhancedFeature
+      title="Web Development"
+      description="现代Web开发技术栈，包括React、Next.js、TypeScript等前端框架，以及Node.js后端开发。"
+      tags={["React", "Next.js", "TypeScript"]}
+      href="/Development/Web"
+      icon="🌐"
+      gradient="from-green-500 to-teal-500"
+      delay={0.2}
+    />
+    
+    <EnhancedFeature
+      title="System & DevOps"
+      description="Linux系统管理、容器化技术、CI/CD流程，构建高效的开发运维环境。"
+      tags={["Docker", "K8s", "Linux"]}
+      href="/tricks"
+      icon="⚙️"
+      gradient="from-orange-500 to-red-500"
+      delay={0.3}
+    />
   </div>
 </div>
+
+## 最新文章
+
+探索前沿技术，分享实践经验。从机器学习到系统优化，记录技术成长的每一步。
+
+---

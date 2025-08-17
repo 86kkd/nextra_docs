@@ -1,0 +1,382 @@
+---
+title: "Tailwind CSS 类名完全教程"
+description: "从零开始学习 Tailwind CSS 的每个类名含义和用法"
+---
+
+import TailwindDemo from '../../components/tailwind-demo'
+
+# Tailwind CSS 类名完全教程
+
+Tailwind CSS 是一个**工具优先**的 CSS 框架。不同于传统 CSS，它提供了大量预定义的类名，每个类名对应一个具体的样式。
+
+## 🎭 交互式演示
+
+下面是一个交互式的演示，你可以实时看到每个类名的效果：
+
+<TailwindDemo />
+
+## 🎯 核心概念
+
+### 什么是 Tailwind CSS？
+- **传统 CSS**: 写一个类名，然后定义它的样式
+- **Tailwind CSS**: 使用预定义的类名，直接应用样式
+
+```jsx
+// 传统 CSS 方式
+<div className="my-container">内容</div>
+// CSS 文件中需要定义：
+// .my-container { max-width: 1024px; margin: 0 auto; padding: 32px; }
+
+// Tailwind CSS 方式
+<div className="max-w-4xl mx-auto p-8">内容</div>
+// 不需要写任何 CSS！
+```
+
+## 📚 详细文档
+
+下面是每个类名的详细说明和用法：
+
+## 📏 布局类名
+
+### 1. 宽度控制 (Width)
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `w-full` | 占满父容器宽度 | `width: 100%` |
+| `w-1/2` | 占父容器一半宽度 | `width: 50%` |
+| `w-64` | 固定宽度 256px | `width: 16rem` (64 × 4px) |
+| `max-w-sm` | 最大宽度 384px | `max-width: 24rem` |
+| `max-w-md` | 最大宽度 448px | `max-width: 28rem` |
+| `max-w-lg` | 最大宽度 512px | `max-width: 32rem` |
+| `max-w-xl` | 最大宽度 576px | `max-width: 36rem` |
+| `max-w-2xl` | 最大宽度 672px | `max-width: 42rem` |
+| `max-w-3xl` | 最大宽度 768px | `max-width: 48rem` |
+| `max-w-4xl` | 最大宽度 896px | `max-width: 56rem` |
+| `max-w-5xl` | 最大宽度 1024px | `max-width: 64rem` |
+| `max-w-6xl` | 最大宽度 1152px | `max-width: 72rem` |
+| `max-w-7xl` | 最大宽度 1280px | `max-width: 80rem` |
+
+**示例解释**：
+```jsx
+<div className="max-w-4xl">
+  {/* 这个容器最大宽度是 896px，即使屏幕很宽，它也不会超过这个宽度 */}
+</div>
+```
+
+### 2. 外边距 (Margin)
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `m-0` | 无外边距 | `margin: 0` |
+| `m-1` | 外边距 4px | `margin: 0.25rem` |
+| `m-2` | 外边距 8px | `margin: 0.5rem` |
+| `m-4` | 外边距 16px | `margin: 1rem` |
+| `m-8` | 外边距 32px | `margin: 2rem` |
+| `mx-auto` | 水平居中 | `margin-left: auto; margin-right: auto` |
+| `my-4` | 上下外边距 16px | `margin-top: 1rem; margin-bottom: 1rem` |
+| `mt-4` | 顶部外边距 16px | `margin-top: 1rem` |
+| `mb-4` | 底部外边距 16px | `margin-bottom: 1rem` |
+| `ml-4` | 左侧外边距 16px | `margin-left: 1rem` |
+| `mr-4` | 右侧外边距 16px | `margin-right: 1rem` |
+
+**示例解释**：
+```jsx
+<div className="mx-auto">
+  {/* mx = margin x轴（水平）
+       auto = 自动
+       效果：左右外边距自动，实现水平居中 */}
+</div>
+```
+
+### 3. 内边距 (Padding)
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `p-0` | 无内边距 | `padding: 0` |
+| `p-1` | 内边距 4px | `padding: 0.25rem` |
+| `p-2` | 内边距 8px | `padding: 0.5rem` |
+| `p-4` | 内边距 16px | `padding: 1rem` |
+| `p-6` | 内边距 24px | `padding: 1.5rem` |
+| `p-8` | 内边距 32px | `padding: 2rem` |
+| `px-4` | 左右内边距 16px | `padding-left: 1rem; padding-right: 1rem` |
+| `py-4` | 上下内边距 16px | `padding-top: 1rem; padding-bottom: 1rem` |
+| `pt-4` | 顶部内边距 16px | `padding-top: 1rem` |
+| `pb-4` | 底部内边距 16px | `padding-bottom: 1rem` |
+
+**数字规律**：
+- Tailwind 的数字单位：1 = 4px (0.25rem)
+- `p-1` = 4px, `p-2` = 8px, `p-4` = 16px, `p-8` = 32px
+
+### 4. 间距工具 (Space Between)
+
+| 类名 | 含义 | 效果 |
+|------|------|------|
+| `space-y-1` | 子元素间垂直间距 4px | 每个子元素（除第一个）上边距 4px |
+| `space-y-2` | 子元素间垂直间距 8px | 每个子元素（除第一个）上边距 8px |
+| `space-y-4` | 子元素间垂直间距 16px | 每个子元素（除第一个）上边距 16px |
+| `space-y-6` | 子元素间垂直间距 24px | 每个子元素（除第一个）上边距 24px |
+| `space-y-8` | 子元素间垂直间距 32px | 每个子元素（除第一个）上边距 32px |
+| `space-y-12` | 子元素间垂直间距 48px | 每个子元素（除第一个）上边距 48px |
+| `space-x-4` | 子元素间水平间距 16px | 每个子元素（除第一个）左边距 16px |
+
+**示例解释**：
+```jsx
+<div className="space-y-4">
+  <div>项目 1</div>  {/* 无上边距 */}
+  <div>项目 2</div>  {/* 上边距 16px */}
+  <div>项目 3</div>  {/* 上边距 16px */}
+</div>
+```
+
+## 📝 文字类名
+
+### 1. 字体大小 (Font Size)
+
+| 类名 | 含义 | 实际大小 | 行高 |
+|------|------|----------|------|
+| `text-xs` | 极小 | 12px | 16px |
+| `text-sm` | 小 | 14px | 20px |
+| `text-base` | 基础 | 16px | 24px |
+| `text-lg` | 大 | 18px | 28px |
+| `text-xl` | 特大 | 20px | 28px |
+| `text-2xl` | 超大 | 24px | 32px |
+| `text-3xl` | 巨大 | 30px | 36px |
+| `text-4xl` | 最大 | 36px | 40px |
+| `text-5xl` | 48px | 48px | 48px |
+| `text-6xl` | 60px | 60px | 60px |
+
+### 2. 字体粗细 (Font Weight)
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `font-thin` | 极细 | `font-weight: 100` |
+| `font-light` | 细 | `font-weight: 300` |
+| `font-normal` | 正常 | `font-weight: 400` |
+| `font-medium` | 中等 | `font-weight: 500` |
+| `font-semibold` | 半粗 | `font-weight: 600` |
+| `font-bold` | 粗体 | `font-weight: 700` |
+| `font-extrabold` | 特粗 | `font-weight: 800` |
+
+### 3. 文字对齐 (Text Align)
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `text-left` | 左对齐 | `text-align: left` |
+| `text-center` | 居中对齐 | `text-align: center` |
+| `text-right` | 右对齐 | `text-align: right` |
+| `text-justify` | 两端对齐 | `text-align: justify` |
+
+### 4. 文字颜色 (Text Color)
+
+| 类名 | 含义 | 示例颜色 |
+|------|------|----------|
+| `text-black` | 黑色 | #000000 |
+| `text-white` | 白色 | #FFFFFF |
+| `text-gray-400` | 浅灰 | #9CA3AF |
+| `text-gray-600` | 中灰 | #4B5563 |
+| `text-gray-700` | 深灰 | #374151 |
+| `text-gray-800` | 更深灰 | #1F2937 |
+| `text-blue-500` | 蓝色 | #3B82F6 |
+| `text-red-500` | 红色 | #EF4444 |
+| `text-green-500` | 绿色 | #10B981 |
+
+**颜色数字规律**：
+- 100-900：数字越大颜色越深
+- 500：标准色调
+- 100-400：比标准浅
+- 600-900：比标准深
+
+## 🎨 背景类名
+
+| 类名 | 含义 | 示例 |
+|------|------|------|
+| `bg-white` | 白色背景 | 纯白 |
+| `bg-gray-50` | 极浅灰背景 | 几乎白色 |
+| `bg-gray-100` | 浅灰背景 | 淡灰 |
+| `bg-blue-100` | 浅蓝背景 | 淡蓝 |
+| `bg-red-100` | 浅红背景 | 淡红 |
+| `bg-green-100` | 浅绿背景 | 淡绿 |
+
+## 🔲 边框类名
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `border` | 1px 边框 | `border-width: 1px` |
+| `border-2` | 2px 边框 | `border-width: 2px` |
+| `border-4` | 4px 边框 | `border-width: 4px` |
+| `border-gray-300` | 浅灰边框 | `border-color: #D1D5DB` |
+| `border-blue-500` | 蓝色边框 | `border-color: #3B82F6` |
+| `rounded` | 小圆角 | `border-radius: 0.25rem` |
+| `rounded-md` | 中圆角 | `border-radius: 0.375rem` |
+| `rounded-lg` | 大圆角 | `border-radius: 0.5rem` |
+| `rounded-xl` | 特大圆角 | `border-radius: 0.75rem` |
+| `rounded-full` | 完全圆形 | `border-radius: 9999px` |
+
+## 🌟 阴影类名
+
+| 类名 | 含义 | 效果 |
+|------|------|------|
+| `shadow-sm` | 小阴影 | 轻微阴影 |
+| `shadow` | 标准阴影 | 常规阴影 |
+| `shadow-md` | 中阴影 | 明显阴影 |
+| `shadow-lg` | 大阴影 | 强烈阴影 |
+| `shadow-xl` | 特大阴影 | 非常强烈阴影 |
+| `shadow-2xl` | 超大阴影 | 极强阴影 |
+
+## 💫 显示类名
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `block` | 块级元素 | `display: block` |
+| `inline-block` | 行内块 | `display: inline-block` |
+| `inline` | 行内元素 | `display: inline` |
+| `flex` | 弹性布局 | `display: flex` |
+| `grid` | 网格布局 | `display: grid` |
+| `hidden` | 隐藏 | `display: none` |
+
+## 🎯 Flexbox 布局类名
+
+| 类名 | 含义 | 实际 CSS |
+|------|------|----------|
+| `flex` | 启用 flex | `display: flex` |
+| `flex-row` | 水平排列 | `flex-direction: row` |
+| `flex-col` | 垂直排列 | `flex-direction: column` |
+| `justify-start` | 主轴起点对齐 | `justify-content: flex-start` |
+| `justify-center` | 主轴居中 | `justify-content: center` |
+| `justify-end` | 主轴末尾对齐 | `justify-content: flex-end` |
+| `justify-between` | 两端对齐 | `justify-content: space-between` |
+| `items-start` | 交叉轴起点对齐 | `align-items: flex-start` |
+| `items-center` | 交叉轴居中 | `align-items: center` |
+| `items-end` | 交叉轴末尾对齐 | `align-items: flex-end` |
+
+## 📱 响应式类名
+
+Tailwind 支持响应式设计，使用前缀来指定断点：
+
+| 前缀 | 最小宽度 | 设备类型 |
+|------|----------|----------|
+| 无前缀 | 0px | 所有设备 |
+| `sm:` | 640px | 手机横屏 |
+| `md:` | 768px | 平板 |
+| `lg:` | 1024px | 笔记本 |
+| `xl:` | 1280px | 桌面显示器 |
+| `2xl:` | 1536px | 大显示器 |
+
+**示例**：
+```jsx
+<div className="text-sm md:text-base lg:text-lg">
+  {/* 手机上：小字体
+       平板上：基础字体
+       电脑上：大字体 */}
+</div>
+```
+
+## 🔄 常见组合模式
+
+### 1. 居中容器
+```jsx
+<div className="max-w-4xl mx-auto p-8">
+  {/* max-w-4xl: 最大宽度 896px
+       mx-auto: 水平居中
+       p-8: 内边距 32px */}
+</div>
+```
+
+### 2. 卡片组件
+```jsx
+<div className="bg-white rounded-lg shadow-md p-6">
+  {/* bg-white: 白色背景
+       rounded-lg: 大圆角
+       shadow-md: 中等阴影
+       p-6: 内边距 24px */}
+</div>
+```
+
+### 3. 标题文字
+```jsx
+<h1 className="text-4xl font-bold text-center mb-8">
+  {/* text-4xl: 36px 大小
+       font-bold: 粗体
+       text-center: 居中对齐
+       mb-8: 底部外边距 32px */}
+</h1>
+```
+
+### 4. 按钮
+```jsx
+<button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+  {/* bg-blue-500: 蓝色背景
+       text-white: 白色文字
+       px-4: 左右内边距 16px
+       py-2: 上下内边距 8px
+       rounded: 圆角
+       hover:bg-blue-600: 悬停时变深蓝 */}
+</button>
+```
+
+### 5. 网格布局
+```jsx
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {/* grid: 启用网格
+       grid-cols-1: 手机上 1 列
+       md:grid-cols-2: 平板上 2 列
+       lg:grid-cols-3: 电脑上 3 列
+       gap-6: 网格间距 24px */}
+</div>
+```
+
+## 🎓 学习技巧
+
+### 1. 记忆规律
+- **数字规律**：1 = 4px, 2 = 8px, 4 = 16px, 8 = 32px
+- **前缀规律**：`m` = margin, `p` = padding, `text` = 文字, `bg` = 背景
+- **方向规律**：`t` = top, `b` = bottom, `l` = left, `r` = right, `x` = 水平, `y` = 垂直
+
+### 2. 调试技巧
+```jsx
+// 临时添加背景色查看布局
+<div className="bg-red-200">查看这个容器的大小</div>
+
+// 添加边框查看边界
+<div className="border border-blue-500">查看边界</div>
+```
+
+### 3. VS Code 插件推荐
+- **Tailwind CSS IntelliSense**：自动补全和提示
+- 安装后，输入类名会有自动提示和预览
+
+## 📚 实战练习
+
+试着理解这段代码：
+```jsx
+<div className="min-h-screen bg-gray-100 py-8">
+  <div className="max-w-6xl mx-auto px-6">
+    <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
+      我的博客
+    </h1>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+        <h2 className="text-xl font-semibold mb-2">文章标题</h2>
+        <p className="text-gray-600">文章描述...</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**解析**：
+1. `min-h-screen`：最小高度为屏幕高度
+2. `bg-gray-100`：浅灰背景
+3. `py-8`：上下内边距 32px
+4. `max-w-6xl mx-auto`：最大宽度 1152px 并居中
+5. `grid` 相关：响应式网格布局
+6. `hover:shadow-lg`：悬停时增强阴影
+7. `transition-shadow`：阴影变化有过渡动画
+
+## 🚀 下一步
+
+1. **实践**：打开你的项目，尝试修改类名看效果
+2. **查文档**：访问 [tailwindcss.com](https://tailwindcss.com) 查看完整文档
+3. **使用工具**：安装 VS Code 的 Tailwind CSS IntelliSense 插件
+
+记住：Tailwind CSS 的核心理念是**组合小的工具类来构建复杂的设计**，而不是写自定义 CSS！

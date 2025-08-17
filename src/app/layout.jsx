@@ -2,6 +2,7 @@ import { Footer, Layout, Navbar } from "nextra-theme-docs";
 import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
+import "../styles/globals.css";
 
 export const metadata = {
   // Define your metadata here
@@ -37,9 +38,12 @@ export default async function RootLayout({ children }) {
       <Head
         // ... Your additional head options
       >
+        {/* Prevent browser extensions from modifying styles */}
+        <meta name="darkreader-lock" />
+        <meta name="color-scheme" content="light dark" />
         {/* Your additional tags should be passed as `children` of `<Head>` element */}
       </Head>
-      <body>
+      <body suppressHydrationWarning>
         <Layout
           banner={banner}
           navbar={navbar}

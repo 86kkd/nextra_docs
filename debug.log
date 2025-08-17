@@ -1,0 +1,388 @@
+$ next dev --turbopack
+   ▲ Next.js 15.3.5 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.43.155:3000
+   - Experiments (use with caution):
+     · turbo
+
+ ✓ Starting...
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` as Turbopack is now stable.
+2025-08-16T15:20:27.716Z next:router-server:filesystem nextDataRoutes Set(0) {}
+2025-08-16T15:20:27.716Z next:router-server:filesystem dynamicRoutes []
+2025-08-16T15:20:27.716Z next:router-server:filesystem customRoutes {
+  headers: [],
+  rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
+  redirects: [
+    {
+      source: '/:path+/',
+      destination: '/:path+',
+      permanent: true,
+      locale: undefined,
+      internal: true
+    }
+  ]
+}
+2025-08-16T15:20:27.716Z next:router-server:filesystem publicFolderItems Set(0) {}
+2025-08-16T15:20:27.716Z next:router-server:filesystem nextStaticFolderItems Set(0) {}
+2025-08-16T15:20:27.716Z next:router-server:filesystem pageFiles Set(0) {}
+2025-08-16T15:20:27.716Z next:router-server:filesystem appFiles Set(0) {}
+Creating turbopack project { dir: '/home/linda/Documents/nextra-docs', testMode: true }
+ ✓ Ready in 666ms
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbo
+
+2025-08-16T15:20:40.993Z next:router-server:main requestHandler! / {
+  matchedOutput: {
+    type: 'appFile',
+    fsPath: undefined,
+    locale: undefined,
+    itemsRoot: undefined,
+    itemPath: '/[[...mdxPath]]'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: { pathname: '/', query: [Object: null prototype] {} },
+  finished: true
+}
+2025-08-16T15:20:40.994Z next:router-server:main invokeRender / {
+  host: 'localhost:3000',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0',
+  accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language': 'en-US,en;q=0.5',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  connection: 'keep-alive',
+  cookie: '_ga=GA1.1.325044093.1714374242; _ga848W2NVWVH=GS1.1.1714580468638.14.0.0.0.0.0; Hm_lvt_e7059486ad3b16e21ea7058836c51b9b=1750940908; _ga_MQRPJQK9SC=GS2.1.s1750940907$o1$g1$t1750941565$j31$l0$h0; Hm_lvt_d5ad5e04e6af914c01767926567602be=1752681760,1752921576,1755007544; _ga_VCR6017LB8=GS2.1.s1755015100$o7$g1$t1755015101$j59$l0$h0',
+  'upgrade-insecure-requests': '1',
+  'sec-fetch-dest': 'document',
+  'sec-fetch-mode': 'navigate',
+  'sec-fetch-site': 'none',
+  'sec-fetch-user': '?1',
+  priority: 'u=0, i'
+}
+ ○ Compiling /[[...mdxPath]] ...
+ ✓ Compiled /[[...mdxPath]] in 12.2s
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 584ms
+2025-08-16T15:20:53.853Z compression gzip compression
+ GET / 500 in 12864ms
+2025-08-16T15:20:53.870Z next:router-server:main requestHandler! /_next/static/chunks/%5Broot-of-the-server%5D__e2c08166._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__e2c08166._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/%5Broot-of-the-server%5D__e2c08166._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/%5Broot-of-the-server%5D__e2c08166._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.871Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__e2c08166._.js"
+2025-08-16T15:20:53.871Z next:router-server:main requestHandler! /_next/static/chunks/node_modules_react-dom_82bb97c6._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/node_modules_react-dom_82bb97c6._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/node_modules_react-dom_82bb97c6._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/node_modules_react-dom_82bb97c6._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.871Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/node_modules_react-dom_82bb97c6._.js"
+2025-08-16T15:20:53.871Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__e2c08166._.js"
+2025-08-16T15:20:53.871Z send accept ranges
+2025-08-16T15:20:53.871Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.871Z send etag W/"fdf87-198b3782a0b"
+2025-08-16T15:20:53.871Z send content-type application/javascript
+2025-08-16T15:20:53.872Z next:router-server:main requestHandler! /_next/static/chunks/node_modules_a51498a5._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/node_modules_a51498a5._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/node_modules_a51498a5._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/node_modules_a51498a5._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.872Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/node_modules_a51498a5._.js"
+2025-08-16T15:20:53.872Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/node_modules_react-dom_82bb97c6._.js"
+2025-08-16T15:20:53.872Z send accept ranges
+2025-08-16T15:20:53.872Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.872Z send etag W/"d4c31-198b3782a0e"
+2025-08-16T15:20:53.872Z send content-type application/javascript
+2025-08-16T15:20:53.873Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/node_modules_a51498a5._.js"
+2025-08-16T15:20:53.873Z send accept ranges
+2025-08-16T15:20:53.873Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.873Z send etag W/"1174d-198b3782a0a"
+2025-08-16T15:20:53.873Z send content-type application/javascript
+2025-08-16T15:20:53.873Z compression gzip compression
+2025-08-16T15:20:53.874Z next:router-server:main requestHandler! /_next/static/chunks/pages__app_5771e187._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/pages__app_5771e187._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/pages__app_5771e187._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/pages__app_5771e187._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.874Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__app_5771e187._.js"
+2025-08-16T15:20:53.874Z next:router-server:main requestHandler! /_next/static/chunks/%5Broot-of-the-server%5D__49fd8634._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__49fd8634._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/%5Broot-of-the-server%5D__49fd8634._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/%5Broot-of-the-server%5D__49fd8634._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.874Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__49fd8634._.js"
+2025-08-16T15:20:53.874Z compression gzip compression
+2025-08-16T15:20:53.874Z compression gzip compression
+2025-08-16T15:20:53.874Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__app_5771e187._.js"
+2025-08-16T15:20:53.874Z send accept ranges
+2025-08-16T15:20:53.874Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.874Z send etag W/"19e-198b3782a09"
+2025-08-16T15:20:53.874Z send content-type application/javascript
+2025-08-16T15:20:53.875Z next:router-server:main requestHandler! /_next/static/chunks/pages__app_9114105e._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/pages__app_9114105e._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/pages__app_9114105e._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/pages__app_9114105e._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.875Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__app_9114105e._.js"
+2025-08-16T15:20:53.875Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__49fd8634._.js"
+2025-08-16T15:20:53.875Z send accept ranges
+2025-08-16T15:20:53.875Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.875Z send etag W/"3d8f-198b3782a0a"
+2025-08-16T15:20:53.875Z send content-type application/javascript
+2025-08-16T15:20:53.875Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__app_9114105e._.js"
+2025-08-16T15:20:53.875Z send accept ranges
+2025-08-16T15:20:53.875Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.875Z send etag W/"1044d-198b3782a0c"
+2025-08-16T15:20:53.875Z send content-type application/javascript
+2025-08-16T15:20:53.875Z compression no compression: size below threshold
+2025-08-16T15:20:53.875Z compression gzip compression
+2025-08-16T15:20:53.876Z compression gzip compression
+2025-08-16T15:20:53.877Z next:router-server:main requestHandler! /_next/static/chunks/%5Broot-of-the-server%5D__8df7605f._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__8df7605f._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/%5Broot-of-the-server%5D__8df7605f._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/%5Broot-of-the-server%5D__8df7605f._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.877Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__8df7605f._.js"
+2025-08-16T15:20:53.877Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__8df7605f._.js"
+2025-08-16T15:20:53.877Z send accept ranges
+2025-08-16T15:20:53.877Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.877Z send etag W/"10315f-198b3782b09"
+2025-08-16T15:20:53.877Z send content-type application/javascript
+2025-08-16T15:20:53.878Z next:router-server:main requestHandler! /_next/static/chunks/pages__error_5771e187._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/pages__error_5771e187._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/pages__error_5771e187._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/pages__error_5771e187._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.878Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__error_5771e187._.js"
+2025-08-16T15:20:53.878Z next:router-server:main requestHandler! /_next/static/chunks/%5Broot-of-the-server%5D__923cb372._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__923cb372._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/%5Broot-of-the-server%5D__923cb372._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/%5Broot-of-the-server%5D__923cb372._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.878Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__923cb372._.js"
+2025-08-16T15:20:53.879Z compression gzip compression
+2025-08-16T15:20:53.879Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__error_5771e187._.js"
+2025-08-16T15:20:53.879Z send accept ranges
+2025-08-16T15:20:53.879Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.879Z send etag W/"19e-198b3782b07"
+2025-08-16T15:20:53.879Z send content-type application/javascript
+2025-08-16T15:20:53.879Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/[root-of-the-server]__923cb372._.js"
+2025-08-16T15:20:53.879Z send accept ranges
+2025-08-16T15:20:53.879Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.879Z send etag W/"3d93-198b3782b07"
+2025-08-16T15:20:53.879Z send content-type application/javascript
+2025-08-16T15:20:53.879Z compression no compression: size below threshold
+2025-08-16T15:20:53.879Z compression gzip compression
+2025-08-16T15:20:53.880Z next:router-server:main requestHandler! /_next/static/chunks/pages__error_ec6747c0._.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/chunks/pages__error_ec6747c0._.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/chunks/pages__error_ec6747c0._.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/chunks/pages__error_ec6747c0._.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.880Z send stat "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__error_ec6747c0._.js"
+2025-08-16T15:20:53.880Z send pipe "/home/linda/Documents/nextra-docs/.next/static/chunks/pages__error_ec6747c0._.js"
+2025-08-16T15:20:53.880Z send accept ranges
+2025-08-16T15:20:53.880Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.880Z send etag W/"10451-198b3782b06"
+2025-08-16T15:20:53.880Z send content-type application/javascript
+2025-08-16T15:20:53.880Z next:router-server:main requestHandler! /_next/static/development/_ssgManifest.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/development/_ssgManifest.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/development/_ssgManifest.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/development/_ssgManifest.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.880Z send stat "/home/linda/Documents/nextra-docs/.next/static/development/_ssgManifest.js"
+2025-08-16T15:20:53.881Z send pipe "/home/linda/Documents/nextra-docs/.next/static/development/_ssgManifest.js"
+2025-08-16T15:20:53.881Z send accept ranges
+2025-08-16T15:20:53.881Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.881Z send etag W/"4c-198b3782b0f"
+2025-08-16T15:20:53.881Z send content-type application/javascript
+2025-08-16T15:20:53.881Z compression gzip compression
+2025-08-16T15:20:53.881Z compression no compression: size below threshold
+2025-08-16T15:20:53.881Z next:router-server:main requestHandler! /_next/static/development/_buildManifest.js {
+  matchedOutput: {
+    type: 'nextStaticFolder',
+    fsPath: '/home/linda/Documents/nextra-docs/.next/static/development/_buildManifest.js',
+    locale: undefined,
+    itemsRoot: '/home/linda/Documents/nextra-docs/.next/static',
+    itemPath: '/development/_buildManifest.js'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: {
+    pathname: '/_next/static/development/_buildManifest.js',
+    query: [Object: null prototype] {}
+  },
+  finished: true
+}
+2025-08-16T15:20:53.881Z send stat "/home/linda/Documents/nextra-docs/.next/static/development/_buildManifest.js"
+2025-08-16T15:20:53.882Z send pipe "/home/linda/Documents/nextra-docs/.next/static/development/_buildManifest.js"
+2025-08-16T15:20:53.882Z send accept ranges
+2025-08-16T15:20:53.882Z send modified Sat, 16 Aug 2025 15:20:53 GMT
+2025-08-16T15:20:53.882Z send etag W/"104-198b3782b0f"
+2025-08-16T15:20:53.882Z send content-type application/javascript
+2025-08-16T15:20:53.882Z compression no compression: size below threshold
+2025-08-16T15:20:53.920Z compression no compression: size below threshold
+2025-08-16T15:20:53.923Z next:router-server:main requestHandler! /favicon.ico {
+  matchedOutput: {
+    type: 'appFile',
+    fsPath: undefined,
+    locale: undefined,
+    itemsRoot: undefined,
+    itemPath: '/[[...mdxPath]]'
+  },
+  statusCode: undefined,
+  resHeaders: {},
+  bodyStream: false,
+  parsedUrl: { pathname: '/favicon.ico', query: [Object: null prototype] {} },
+  finished: true
+}
+2025-08-16T15:20:53.923Z next:router-server:main invokeRender /favicon.ico {
+  host: 'localhost:3000',
+  'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0',
+  accept: 'image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5',
+  'accept-language': 'en-US,en;q=0.5',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  connection: 'keep-alive',
+  referer: 'http://localhost:3000/',
+  cookie: '_ga=GA1.1.325044093.1714374242; _ga848W2NVWVH=GS1.1.1714580468638.14.0.0.0.0.0; Hm_lvt_e7059486ad3b16e21ea7058836c51b9b=1750940908; _ga_MQRPJQK9SC=GS2.1.s1750940907$o1$g1$t1750941565$j31$l0$h0; Hm_lvt_d5ad5e04e6af914c01767926567602be=1752681760,1752921576,1755007544; _ga_VCR6017LB8=GS2.1.s1755015100$o7$g1$t1755015101$j59$l0$h0',
+  'sec-fetch-dest': 'image',
+  'sec-fetch-mode': 'no-cors',
+  'sec-fetch-site': 'same-origin',
+  priority: 'u=6'
+}
+2025-08-16T15:20:53.924Z compression no compression: size below threshold
+2025-08-16T15:20:54.014Z compression no compression: size below threshold
