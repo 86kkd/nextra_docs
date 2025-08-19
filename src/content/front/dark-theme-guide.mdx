@@ -1,0 +1,434 @@
+---
+title: "Dark Theme 适配完全指南"
+description: "学习如何让你的网站完美支持浏览器的深色主题"
+---
+
+# Dark Theme 适配完全指南
+
+现代网站需要同时支持浅色和深色主题，这不仅能提升用户体验，还能保护用户眼睛。本指南将教你如何完美适配系统的深色主题。
+
+## 🌓 为什么需要深色主题？
+
+1. **保护眼睛**: 在暗环境下减少屏幕亮度对眼睛的刺激
+2. **省电**: OLED 屏幕显示黑色时功耗更低
+3. **用户偏好**: 越来越多用户喜欢深色界面
+4. **系统一致性**: 与操作系统主题保持一致
+
+## 🎯 核心概念
+
+### 1. Tailwind CSS 的 Dark Mode
+
+Tailwind CSS 提供了强大的深色模式支持，通过 `dark:` 前缀来应用深色模式样式。
+
+```jsx
+// 基础用法
+<div className="bg-white dark:bg-gray-900">
+  <p className="text-gray-900 dark:text-gray-100">
+    自动适配深色模式的文字
+  </p>
+</div>
+```
+
+### 2. 配置 Tailwind
+
+在 `tailwind.config.js` 中启用深色模式：
+
+```js
+module.exports = {
+  darkMode: 'class', // 或 'media'
+  // ...
+}
+```
+
+- `'media'`: 自动跟随系统主题
+- `'class'`: 通过添加 `.dark` 类来控制
+
+## 📋 深色模式适配清单
+
+### ✅ 必须适配的元素
+
+| 元素类型 | 浅色模式 | 深色模式 | 示例代码 |
+|---------|---------|---------|----------|
+| **背景色** | 白色/浅色 | 深灰/黑色 | `bg-white dark:bg-gray-900` |
+| **文字颜色** | 深色 | 浅色 | `text-gray-900 dark:text-gray-100` |
+| **边框** | 深色边框 | 浅色边框 | `border-gray-300 dark:border-gray-700` |
+| **阴影** | 深色阴影 | 浅色阴影 | `shadow-gray-300 dark:shadow-gray-900` |
+| **卡片背景** | 白色 | 深灰色 | `bg-white dark:bg-gray-800` |
+| **输入框** | 浅色背景 | 深色背景 | `bg-gray-50 dark:bg-gray-700` |
+| **悬停效果** | 变深 | 变浅 | `hover:bg-gray-100 dark:hover:bg-gray-700` |
+
+## 🎨 颜色对应关系
+
+### 背景色映射
+
+```jsx
+// 主背景
+bg-white       → dark:bg-gray-900
+bg-gray-50     → dark:bg-gray-800
+bg-gray-100    → dark:bg-gray-700
+
+// 卡片/容器背景
+bg-white       → dark:bg-gray-800
+bg-gray-50     → dark:bg-gray-700
+bg-gray-100    → dark:bg-gray-600
+
+// 悬停背景
+hover:bg-gray-50  → dark:hover:bg-gray-700
+hover:bg-gray-100 → dark:hover:bg-gray-600
+```
+
+### 文字颜色映射
+
+```jsx
+// 主要文字
+text-gray-900  → dark:text-gray-100
+text-gray-800  → dark:text-gray-200
+
+// 次要文字
+text-gray-600  → dark:text-gray-400
+text-gray-500  → dark:text-gray-500
+
+// 禁用/提示文字
+text-gray-400  → dark:text-gray-600
+```
+
+### 边框颜色映射
+
+```jsx
+border-gray-200 → dark:border-gray-700
+border-gray-300 → dark:border-gray-600
+border-gray-400 → dark:border-gray-500
+```
+
+## 💡 实战示例
+
+### 示例 1: 卡片组件
+
+```jsx
+// ❌ 错误：没有考虑深色模式
+<div className="bg-white rounded-lg shadow p-6">
+  <h2 className="text-xl font-bold text-gray-900">标题</h2>
+  <p className="text-gray-600">描述文字</p>
+</div>
+
+// ✅ 正确：完美适配深色模式
+<div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900 p-6">
+  <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">标题</h2>
+  <p className="text-gray-600 dark:text-gray-400">描述文字</p>
+</div>
+```
+
+### 示例 2: 导航栏
+
+```jsx
+// ✅ 完整的导航栏深色模式适配
+<nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="flex items-center justify-between h-16">
+      <a 
+        href="/" 
+        className="text-gray-900 dark:text-gray-100 font-bold text-xl"
+      >
+        Logo
+      </a>
+      <div className="flex space-x-4">
+        <a 
+          href="/about" 
+          className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+        >
+          关于
+        </a>
+        <a 
+          href="/contact" 
+          className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+        >
+          联系
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+```
+
+### 示例 3: 表单输入
+
+```jsx
+// ✅ 表单元素的深色模式适配
+<div className="space-y-4">
+  <div>
+    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+      用户名
+    </label>
+    <input
+      type="text"
+      className="mt-1 block w-full rounded-md 
+                 bg-white dark:bg-gray-700 
+                 border-gray-300 dark:border-gray-600
+                 text-gray-900 dark:text-gray-100
+                 focus:border-blue-500 dark:focus:border-blue-400
+                 focus:ring-blue-500 dark:focus:ring-blue-400"
+    />
+  </div>
+  
+  <button className="px-4 py-2 
+                     bg-blue-600 hover:bg-blue-700 
+                     dark:bg-blue-500 dark:hover:bg-blue-600
+                     text-white rounded-md">
+    提交
+  </button>
+</div>
+```
+
+### 示例 4: 代码块样式
+
+```jsx
+// ✅ 代码块的深色模式适配
+<pre className="bg-gray-100 dark:bg-gray-800 
+                text-gray-800 dark:text-gray-200 
+                p-4 rounded-lg overflow-x-auto">
+  <code>{`function hello() {
+  console.log("Hello, Dark Mode!");
+}`}</code>
+</pre>
+```
+
+## 🔧 高级技巧
+
+### 1. 自定义 CSS 类的深色模式
+
+在 `globals.css` 中定义：
+
+```css
+/* 渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(to right, #9333ea, #ec4899, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 深色模式下使用更亮的颜色 */
+.dark .gradient-text {
+  background: linear-gradient(to right, #a855f7, #f472b6, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+```
+
+### 2. 使用 CSS 变量
+
+```css
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #111827;
+  --border-color: #e5e7eb;
+}
+
+.dark {
+  --bg-primary: #111827;
+  --text-primary: #f3f4f6;
+  --border-color: #374151;
+}
+
+/* 使用变量 */
+.custom-component {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+```
+
+### 3. 条件渲染不同组件
+
+```jsx
+import { useTheme } from 'next-themes'
+
+function MyComponent() {
+  const { theme } = useTheme()
+  
+  return (
+    <div>
+      {theme === 'dark' ? (
+        <DarkModeIcon className="w-6 h-6" />
+      ) : (
+        <LightModeIcon className="w-6 h-6" />
+      )}
+    </div>
+  )
+}
+```
+
+### 4. 图片适配
+
+```jsx
+// 为不同主题提供不同的图片
+<picture>
+  <source 
+    srcSet="/logo-dark.png" 
+    media="(prefers-color-scheme: dark)"
+  />
+  <img 
+    src="/logo-light.png" 
+    alt="Logo"
+  />
+</picture>
+
+// 或使用 CSS 滤镜
+<img 
+  src="/logo.png" 
+  className="dark:invert dark:brightness-90"
+  alt="Logo"
+/>
+```
+
+## 🐛 常见问题
+
+### 问题 1: 闪烁问题
+
+**问题**: 页面加载时主题闪烁
+**解决方案**: 在 `<head>` 中添加脚本：
+
+```html
+<script>
+  // 防止闪烁
+  if (localStorage.theme === 'dark' || 
+      (!('theme' in localStorage) && 
+       window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+</script>
+```
+
+### 问题 2: 颜色对比度不足
+
+**问题**: 深色模式下文字看不清
+**解决方案**: 确保足够的对比度：
+
+```jsx
+// ❌ 对比度不足
+<p className="text-gray-700 dark:text-gray-600">难以阅读</p>
+
+// ✅ 良好的对比度
+<p className="text-gray-700 dark:text-gray-300">清晰可读</p>
+```
+
+### 问题 3: 忘记适配某些元素
+
+**问题**: 部分元素在深色模式下显示异常
+**解决方案**: 使用检查清单：
+
+```jsx
+// 检查清单
+const checkList = [
+  '所有 bg-white 都有对应的 dark:bg-gray-X',
+  '所有 text-gray-X00 都有对应的 dark:text-gray-Y00',
+  '所有 border 都有对应的 dark:border',
+  '所有 shadow 都考虑了深色模式',
+  '所有 hover 状态都适配了深色模式',
+  '所有自定义 CSS 类都有 .dark 版本'
+]
+```
+
+## 📝 最佳实践
+
+### 1. 一致性原则
+
+- 整站使用统一的颜色映射规则
+- 创建可复用的组件，避免重复写深色模式类
+
+### 2. 渐进增强
+
+```jsx
+// 先确保浅色模式完美，再添加深色模式
+<div className="bg-white">              {/* 步骤1: 基础样式 */}
+<div className="bg-white dark:bg-gray-900"> {/* 步骤2: 添加深色模式 */}
+```
+
+### 3. 测试技巧
+
+1. **浏览器测试**: 
+   - Chrome DevTools → Settings → Preferences → Appearance
+   - Firefox: about:config → ui.systemUsesDarkTheme
+
+2. **快速切换**:
+   ```jsx
+   // 添加主题切换按钮方便测试
+   <button onClick={() => document.documentElement.classList.toggle('dark')}>
+     切换主题
+   </button>
+   ```
+
+3. **自动化测试**:
+   - 使用 Playwright 或 Cypress 测试两种主题
+   - 截图对比确保视觉一致性
+
+## 🎯 实战练习
+
+试着为下面的组件添加深色模式支持：
+
+```jsx
+// 练习：为这个组件添加深色模式
+<div className="min-h-screen bg-gray-50">
+  <header className="bg-white shadow">
+    <div className="max-w-7xl mx-auto py-6 px-4">
+      <h1 className="text-3xl font-bold text-gray-900">
+        Dashboard
+      </h1>
+    </div>
+  </header>
+  <main>
+    <div className="max-w-7xl mx-auto py-6">
+      <div className="px-4 py-6">
+        <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
+          <p className="text-gray-500 text-center mt-10">
+            内容区域
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+<details>
+<summary>查看答案</summary>
+
+```jsx
+<div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <header className="bg-white dark:bg-gray-800 shadow dark:shadow-gray-700">
+    <div className="max-w-7xl mx-auto py-6 px-4">
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Dashboard
+      </h1>
+    </div>
+  </header>
+  <main>
+    <div className="max-w-7xl mx-auto py-6">
+      <div className="px-4 py-6">
+        <div className="border-4 border-dashed border-gray-200 dark:border-gray-700 rounded-lg h-96">
+          <p className="text-gray-500 dark:text-gray-400 text-center mt-10">
+            内容区域
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+```
+
+</details>
+
+## 🚀 总结
+
+深色模式适配的核心要点：
+
+1. **使用 `dark:` 前缀** - Tailwind 的强大功能
+2. **颜色映射要合理** - 保持良好的对比度
+3. **全面覆盖** - 不要遗漏任何元素
+4. **测试两种模式** - 确保都能正常显示
+5. **保持一致性** - 整站使用统一规则
+
+记住：好的深色模式不是简单的颜色反转，而是精心设计的视觉体验！

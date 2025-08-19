@@ -7,11 +7,11 @@
 
 export function ClassNameDemo() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
 
       {/* 1. 容器类名效果演示 */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-center mb-6">容器类名效果</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">容器类名效果</h2>
 
         {/* 无样式的基础容器 */}
         <div className="mb-4 bg-red-100 border border-red-300">
@@ -31,43 +31,43 @@ export function ClassNameDemo() {
 
       {/* 2. 文字类名效果演示 */}
       <section className="max-w-4xl mx-auto mb-12">
-        <h2 className="text-2xl font-bold text-center mb-6">文字类名效果</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">文字类名效果</h2>
 
-        <div className="space-y-6 bg-white p-6 rounded-lg shadow">
-          <p className="text-xs">text-xs - 极小文字 (12px)</p>
-          <p className="text-sm">text-sm - 小文字 (14px)</p>
-          <p className="text-base">text-base - 基础文字 (16px)</p>
-          <p className="text-lg">text-lg - 大文字 (18px)</p>
-          <p className="text-xl">text-xl - 特大文字 (20px)</p>
-          <p className="text-2xl">text-2xl - 超大文字 (24px)</p>
-          <p className="text-3xl font-bold">text-3xl font-bold - 巨大粗体 (30px)</p>
-          <p className="text-4xl font-bold text-center">text-4xl font-bold text-center - 最大居中粗体 (36px)</p>
+        <div className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow dark:shadow-gray-700">
+          <p className="text-xs text-gray-800 dark:text-gray-200">text-xs - 极小文字 (12px)</p>
+          <p className="text-sm text-gray-800 dark:text-gray-200">text-sm - 小文字 (14px)</p>
+          <p className="text-base text-gray-800 dark:text-gray-200">text-base - 基础文字 (16px)</p>
+          <p className="text-lg text-gray-800 dark:text-gray-200">text-lg - 大文字 (18px)</p>
+          <p className="text-xl text-gray-800 dark:text-gray-200">text-xl - 特大文字 (20px)</p>
+          <p className="text-2xl text-gray-800 dark:text-gray-200">text-2xl - 超大文字 (24px)</p>
+          <p className="text-3xl font-bold text-gray-800 dark:text-gray-200">text-3xl font-bold - 巨大粗体 (30px)</p>
+          <p className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200">text-4xl font-bold text-center - 最大居中粗体 (36px)</p>
         </div>
       </section>
 
       {/* 3. 间距类名效果演示 */}
       <section className="max-w-4xl mx-auto mb-12">
-        <h2 className="text-2xl font-bold text-center mb-6">间距类名效果</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">间距类名效果</h2>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-4">space-y 效果演示</h3>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow dark:shadow-gray-700">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">space-y 效果演示</h3>
 
           {/* space-y-2 */}
-          <div className="space-y-2 mb-6 bg-gray-50 p-4 rounded">
+          <div className="space-y-2 mb-6 bg-gray-50 dark:bg-gray-700 p-4 rounded">
             <p className="bg-blue-200 p-2 rounded">space-y-2 项目 1</p>
             <p className="bg-blue-200 p-2 rounded">space-y-2 项目 2</p>
             <p className="bg-blue-200 p-2 rounded">space-y-2 项目 3</p>
           </div>
 
           {/* space-y-6 */}
-          <div className="space-y-6 mb-6 bg-gray-50 p-4 rounded">
+          <div className="space-y-6 mb-6 bg-gray-50 dark:bg-gray-700 p-4 rounded">
             <p className="bg-green-200 p-2 rounded">space-y-6 项目 1</p>
             <p className="bg-green-200 p-2 rounded">space-y-6 项目 2</p>
             <p className="bg-green-200 p-2 rounded">space-y-6 项目 3</p>
           </div>
 
           {/* space-y-12 */}
-          <div className="space-y-12 bg-gray-50 p-4 rounded">
+          <div className="space-y-12 bg-gray-50 dark:bg-gray-700 p-4 rounded">
             <p className="bg-purple-200 p-2 rounded">space-y-12 项目 1</p>
             <p className="bg-purple-200 p-2 rounded">space-y-12 项目 2</p>
             <p className="bg-purple-200 p-2 rounded">space-y-12 项目 3</p>
@@ -77,23 +77,23 @@ export function ClassNameDemo() {
 
       {/* 4. 渐变文字效果演示 */}
       <section className="max-w-4xl mx-auto mb-12">
-        <h2 className="text-2xl font-bold text-center mb-6">渐变文字效果</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">渐变文字效果</h2>
 
-        <div className="bg-white p-6 rounded-lg shadow space-y-6">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow dark:shadow-gray-700 space-y-6">
           <div className="gradient-text text-3xl font-bold text-center">
             这是渐变文字效果
           </div>
 
-          <div className="text-center text-sm text-gray-600">
+          <div className="text-center text-sm text-gray-600 dark:text-gray-400">
             使用 gradient-text + text-3xl + font-bold + text-center
           </div>
 
           {/* 对比普通文字 */}
-          <div className="text-3xl font-bold text-center text-gray-800">
+          <div className="text-3xl font-bold text-center text-gray-800 dark:text-gray-200">
             这是普通文字效果
           </div>
 
-          <div className="text-center text-sm text-gray-600">
+          <div className="text-center text-sm text-gray-600 dark:text-gray-400">
             使用 text-3xl + font-bold + text-center + text-gray-800
           </div>
         </div>
@@ -101,26 +101,26 @@ export function ClassNameDemo() {
 
       {/* 5. 组合效果演示 */}
       <section className="max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6">完整组合效果</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">完整组合效果</h2>
 
-        <div className="max-w-4xl mx-auto p-8 space-y-13 bg-white rounded-lg shadow-lg">
+        <div className="max-w-4xl mx-auto p-8 space-y-13 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-700">
           <h1 className="text-4xl font-bold text-center mb-8 gradient-text">
             这就是你代码中的效果
           </h1>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold">1. 基础渐变文字</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">1. 基础渐变文字</h2>
             <div className="gradient-text text-3xl font-bold">
               技术探索与知识分享
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
               使用 CSS linear-gradient + background-clip: text 实现
             </div>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold">2. 说明文字</h2>
-            <p className="text-gray-700">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">2. 说明文字</h2>
+            <p className="text-gray-700 dark:text-gray-300">
               每个 className 都有特定的作用，组合起来创建完整的布局和样式效果。
             </p>
           </section>
