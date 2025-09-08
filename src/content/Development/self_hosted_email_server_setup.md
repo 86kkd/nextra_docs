@@ -34,21 +34,17 @@ graph LR
   <Tabs.Tab>
     ### 服务端需求
     
-    <Cards>
-      <Cards.Card title="硬件要求" icon="🖥️">
-        - VPS服务器（公网IP）
-        - 最低2GB内存
-        - 20GB存储空间
-        - Ubuntu 22.04 LTS
-      </Cards.Card>
-      
-      <Cards.Card title="网络要求" icon="🌐">
-        - 域名（如example.com）
-        - 25端口开放
-        - 反向DNS（PTR记录）
-        - 固定公网IP
-      </Cards.Card>
-    </Cards>
+    **硬件要求** 🖥️
+    - VPS服务器（公网IP）
+    - 最低2GB内存
+    - 20GB存储空间
+    - Ubuntu 22.04 LTS
+    
+    **网络要求** 🌐
+    - 域名（如example.com）
+    - 25端口开放
+    - 反向DNS（PTR记录）
+    - 固定公网IP
     
     ### 检查端口状态
     ```bash
@@ -62,21 +58,17 @@ graph LR
   <Tabs.Tab>
     ### 客户端选择
     
-    <Cards>
-      <Cards.Card title="桌面客户端" icon="💻">
-        - Thunderbird（推荐）
-        - Microsoft Outlook
-        - Apple Mail
-        - Mailspring
-      </Cards.Card>
-      
-      <Cards.Card title="移动客户端" icon="📱">
-        - iOS内置邮件
-        - Gmail App（支持IMAP）
-        - Outlook Mobile
-        - K-9 Mail（Android）
-      </Cards.Card>
-    </Cards>
+    **桌面客户端** 💻
+    - Thunderbird（推荐）
+    - Microsoft Outlook
+    - Apple Mail
+    - Mailspring
+    
+    **移动客户端** 📱
+    - iOS内置邮件
+    - Gmail App（支持IMAP）
+    - Outlook Mobile
+    - K-9 Mail（Android）
     
     ### 准备信息
     - 邮箱地址（user@yourdomain.com）
