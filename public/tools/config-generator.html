@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sing-box Trojan 配置生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .password-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .password-input {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .server-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .server-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .server-title {
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .remove-server {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .config-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-left: 4px solid #1976d2;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 sing-box Trojan 配置生成器</h1>
+        
+        <div class="card">
+            <div class="alert">
+                💡 这个工具帮助你快速生成 sing-box 的 Trojan 节点配置，自动生成强密码，并导出完整的配置文件。
+            </div>
+            
+            <h2 class="section-title">基础设置</h2>
+            
+            <div class="form-group">
+                <label for="subscriptionKey">订阅密钥（用于保护订阅链接）</label>
+                <div class="password-group">
+                    <input type="text" id="subscriptionKey" class="password-input" placeholder="留空将自动生成">
+                    <button type="button" class="btn btn-secondary" id="genSubKey">生成密钥</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="apiSecret">API 密钥（用于 Web UI）</label>
+                <div class="password-group">
+                    <input type="text" id="apiSecret" class="password-input" placeholder="留空将自动生成">
+                    <button type="button" class="btn btn-secondary" id="genApiKey">生成密钥</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">服务器配置</h2>
+            
+            <div id="servers-container">
+                <!-- 服务器配置将动态添加到这里 -->
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="addServerBtn">+ 添加服务器</button>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">生成配置</h2>
+            
+            <button type="button" class="btn btn-success" id="generateBtn" style="width: 100%; font-size: 18px;">
+                🎯 生成所有配置
+            </button>
+        </div>
+
+        <div class="card" id="output-section" style="display: none;">
+            <h2 class="section-title">生成的配置文件</h2>
+            
+            <div id="config-output" class="config-output">
+                <!-- 配置输出将显示在这里 -->
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button type="button" class="btn btn-primary" id="copyBtn">📋 复制配置</button>
+                <button type="button" class="btn btn-secondary" id="downloadBtn">💾 下载配置</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let serverCount = 0;
+        let currentConfig = '';
+
+        // 生成随机字符串
+        function generateRandomString(length) {
+            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            return result;
+        }
+
+        // 生成密码
+        function generatePassword(length = 16) {
+            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            return password;
+        }
+
+        // 添加服务器
+        function addServer() {
+            serverCount++;
+            const container = document.getElementById('servers-container');
+            const serverDiv = document.createElement('div');
+            serverDiv.className = 'server-card';
+            serverDiv.id = 'server-' + serverCount;
+            
+            const locations = ['香港', '美国', '日本', '新加坡', '韩国', '台湾'];
+            const defaultLocation = locations[(serverCount - 1) % locations.length];
+            
+            const html = `
+                <div class="server-header">
+                    <div class="server-title">服务器 ${serverCount} - ${defaultLocation}</div>
+                    ${serverCount > 1 ? '<button type="button" class="remove-server" data-id="' + serverCount + '">删除</button>' : ''}
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>节点名称</label>
+                        <input type="text" id="server-name-${serverCount}" value="${defaultLocation}-${serverCount}" placeholder="例如：香港-HK">
+                    </div>
+                    <div class="form-group">
+                        <label>服务器域名</label>
+                        <input type="text" id="server-domain-${serverCount}" placeholder="例如：hk.example.com">
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>服务器 IP（可选）</label>
+                        <input type="text" id="server-ip-${serverCount}" placeholder="例如：1.2.3.4">
+                    </div>
+                    <div class="form-group">
+                        <label>端口</label>
+                        <input type="number" id="server-port-${serverCount}" value="443" placeholder="443">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Trojan 密码</label>
+                    <div class="password-group">
+                        <input type="text" id="server-password-${serverCount}" class="password-input" value="${generateRandomString(16)}" placeholder="留空将自动生成">
+                        <button type="button" class="btn btn-secondary gen-pwd-btn" data-target="server-password-${serverCount}">生成密码</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>证书邮箱（Let's Encrypt）</label>
+                    <input type="email" id="server-email-${serverCount}" placeholder="your@email.com">
+                </div>
+            `;
+            
+            serverDiv.innerHTML = html;
+            container.appendChild(serverDiv);
+            
+            // 添加删除按钮事件
+            const removeBtn = serverDiv.querySelector('.remove-server');
+            if (removeBtn) {
+                removeBtn.addEventListener('click', function() {
+                    serverDiv.remove();
+                });
+            }
+            
+            // 添加生成密码按钮事件
+            const genPwdBtn = serverDiv.querySelector('.gen-pwd-btn');
+            if (genPwdBtn) {
+                genPwdBtn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    document.getElementById(targetId).value = generateRandomString(16);
+                });
+            }
+        }
+
+        // 收集服务器数据
+        function collectServerData() {
+            const servers = [];
+            // 正确的选择器：查找所有 server-name-X 的输入框
+            const serverElements = document.querySelectorAll('input[id^="server-name-"]');
+            
+            console.log('找到的服务器元素：', serverElements.length); // 调试信息
+            
+            serverElements.forEach(element => {
+                const match = element.id.match(/server-name-(\d+)/);
+                if (match) {
+                    const num = match[1];
+                    const domainElement = document.getElementById('server-domain-' + num);
+                    
+                    if (domainElement) {
+                        const domain = domainElement.value.trim();
+                        
+                        console.log('服务器 ' + num + ' 域名：', domain); // 调试信息
+                        
+                        if (domain) {
+                            servers.push({
+                                name: element.value || '服务器-' + num,
+                                domain: domain,
+                                ip: document.getElementById('server-ip-' + num).value,
+                                port: document.getElementById('server-port-' + num).value || '443',
+                                password: document.getElementById('server-password-' + num).value || generateRandomString(16),
+                                email: document.getElementById('server-email-' + num).value || 'admin@example.com'
+                            });
+                        }
+                    }
+                }
+            });
+            
+            console.log('收集到的服务器数据：', servers); // 调试信息
+            return servers;
+        }
+
+        // 生成服务器配置
+        function generateServerConfig(server) {
+            return {
+                "log": {
+                    "level": "info",
+                    "timestamp": true
+                },
+                "inbounds": [
+                    {
+                        "type": "trojan",
+                        "tag": "trojan-in",
+                        "listen": "::",
+                        "listen_port": parseInt(server.port),
+                        "users": [
+                            {
+                                "name": "user",
+                                "password": server.password
+                            }
+                        ],
+                        "tls": {
+                            "enabled": true,
+                            "server_name": server.domain,
+                            "alpn": ["h2", "http/1.1"],
+                            "certificate_path": `/etc/letsencrypt/live/${server.domain}/fullchain.pem`,
+                            "key_path": `/etc/letsencrypt/live/${server.domain}/privkey.pem`
+                        },
+                        "fallback": {
+                            "server": "127.0.0.1",
+                            "server_port": 80
+                        },
+                        "multiplex": {
+                            "enabled": true,
+                            "padding": false
+                        }
+                    }
+                ],
+                "outbounds": [
+                    {
+                        "type": "direct",
+                        "tag": "direct"
+                    }
+                ]
+            };
+        }
+
+        // 生成客户端配置
+        function generateClientConfig(servers, apiSecret) {
+            const outbounds = [
+                {
+                    "type": "selector",
+                    "tag": "proxy",
+                    "outbounds": ["auto", ...servers.map(s => s.name), "direct"],
+                    "default": "auto"
+                },
+                {
+                    "type": "urltest",
+                    "tag": "auto",
+                    "outbounds": servers.map(s => s.name),
+                    "url": "https://www.gstatic.com/generate_204",
+                    "interval": "3m",
+                    "tolerance": 50
+                }
+            ];
+            
+            servers.forEach(server => {
+                outbounds.push({
+                    "type": "trojan",
+                    "tag": server.name,
+                    "server": server.domain,
+                    "server_port": parseInt(server.port),
+                    "password": server.password,
+                    "tls": {
+                        "enabled": true,
+                        "server_name": server.domain,
+                        "insecure": false
+                    },
+                    "multiplex": {
+                        "enabled": true,
+                        "protocol": "h2mux",
+                        "max_connections": 4,
+                        "min_streams": 4,
+                        "padding": false
+                    }
+                });
+            });
+            
+            outbounds.push(
+                {
+                    "type": "direct",
+                    "tag": "direct"
+                },
+                {
+                    "type": "block",
+                    "tag": "block"
+                }
+            );
+            
+            return {
+                "log": {
+                    "level": "info",
+                    "timestamp": true
+                },
+                "dns": {
+                    "servers": [
+                        {
+                            "tag": "google",
+                            "address": "tls://8.8.8.8",
+                            "detour": "proxy"
+                        },
+                        {
+                            "tag": "local",
+                            "address": "223.5.5.5",
+                            "detour": "direct"
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "geosite": "cn",
+                            "server": "local"
+                        }
+                    ],
+                    "final": "google"
+                },
+                "inbounds": [
+                    {
+                        "type": "tun",
+                        "tag": "tun-in",
+                        "inet4_address": "172.19.0.1/30",
+                        "auto_route": true,
+                        "strict_route": true,
+                        "sniff": true,
+                        "sniff_override_destination": true,
+                        "stack": "system"
+                    }
+                ],
+                "outbounds": outbounds,
+                "route": {
+                    "rules": [
+                        {
+                            "protocol": "dns",
+                            "action": "hijack-dns"
+                        },
+                        {
+                            "geosite": "category-ads-all",
+                            "action": "reject"
+                        },
+                        {
+                            "geoip": "private",
+                            "outbound": "direct"
+                        },
+                        {
+                            "geosite": "cn",
+                            "geoip": "cn",
+                            "outbound": "direct"
+                        }
+                    ],
+                    "final": "proxy",
+                    "auto_detect_interface": true
+                },
+                "experimental": {
+                    "clash_api": {
+                        "external_controller": "127.0.0.1:9090",
+                        "external_ui": "ui",
+                        "external_ui_download_url": "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
+                        "external_ui_download_detour": "proxy",
+                        "secret": apiSecret,
+                        "default_mode": "rule",
+                        "access_control_allow_origin": [],
+                        "access_control_allow_private_network": false
+                    },
+                    "cache_file": {
+                        "enabled": true,
+                        "path": "cache.db",
+                        "cache_id": "",
+                        "store_fakeip": true,
+                        "store_rdrc": true,
+                        "rdrc_timeout": "7d"
+                    }
+                }
+            };
+        }
+
+        // 生成所有配置
+        function generateAllConfigs() {
+            const servers = collectServerData();
+            
+            if (servers.length === 0) {
+                alert('请至少添加一个服务器并填写域名！');
+                return;
+            }
+            
+            const subscriptionKey = document.getElementById('subscriptionKey').value || generateRandomString(32);
+            const apiSecret = document.getElementById('apiSecret').value || generateRandomString(32);
+            
+            let output = '========== 配置信息 ==========\n\n';
+            output += '订阅密钥: ' + subscriptionKey + '\n';
+            output += 'API密钥: ' + apiSecret + '\n\n';
+            
+            // 生成服务器配置
+            servers.forEach((server, index) => {
+                output += `========== 服务器 ${index + 1}: ${server.name} ==========\n\n`;
+                output += '域名: ' + server.domain + '\n';
+                output += '端口: ' + server.port + '\n';
+                output += '密码: ' + server.password + '\n';
+                output += '邮箱: ' + server.email + '\n\n';
+                output += '--- 服务器配置 (config.json) ---\n';
+                output += JSON.stringify(generateServerConfig(server), null, 2) + '\n\n';
+            });
+            
+            // 生成客户端配置
+            output += '========== 客户端配置 ==========\n\n';
+            output += JSON.stringify(generateClientConfig(servers, apiSecret), null, 2) + '\n\n';
+            
+            // 显示输出
+            currentConfig = output;
+            document.getElementById('config-output').textContent = output;
+            document.getElementById('output-section').style.display = 'block';
+            document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 复制配置
+        function copyConfig() {
+            if (!currentConfig) {
+                alert('请先生成配置！');
+                return;
+            }
+            
+            navigator.clipboard.writeText(currentConfig).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ 已复制';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                // 降级方案
+                const textarea = document.createElement('textarea');
+                textarea.value = currentConfig;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('配置已复制到剪贴板！');
+            });
+        }
+
+        // 下载配置
+        function downloadConfig() {
+            if (!currentConfig) {
+                alert('请先生成配置！');
+                return;
+            }
+            
+            const blob = new Blob([currentConfig], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sing-box-config-' + Date.now() + '.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 初始化事件监听
+        document.addEventListener('DOMContentLoaded', function() {
+            // 生成初始密钥
+            document.getElementById('subscriptionKey').value = generatePassword(32);
+            document.getElementById('apiSecret').value = generatePassword(32);
+            
+            // 添加两个默认服务器
+            addServer();
+            addServer();
+            
+            // 绑定按钮事件
+            document.getElementById('genSubKey').addEventListener('click', function() {
+                document.getElementById('subscriptionKey').value = generatePassword(32);
+            });
+            
+            document.getElementById('genApiKey').addEventListener('click', function() {
+                document.getElementById('apiSecret').value = generatePassword(32);
+            });
+            
+            document.getElementById('addServerBtn').addEventListener('click', addServer);
+            
+            document.getElementById('generateBtn').addEventListener('click', generateAllConfigs);
+            
+            document.getElementById('copyBtn').addEventListener('click', copyConfig);
+            
+            document.getElementById('downloadBtn').addEventListener('click', downloadConfig);
+        });
+    </script>
+</body>
+</html>

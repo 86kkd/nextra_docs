@@ -2,6 +2,16 @@
 
 Here's my research on deep learning.
 
+## Computer Vision
+
+### 目标检测 (Object Detection)
+- [DINO - 自监督视觉Transformer](./cv/DINO.md)
+- [YOLO vs DETR - 小目标检测架构对比与优化](./cv/yolo_vs_detr_small_object_detection.md)
+- [YOLO 系列小目标检测优化完全指南](./cv/yolo_small_object_detection_optimization.md)
+
+### 注意力机制 (Attention Mechanisms)
+- [提升模型全局注意力的方法论与实践](./cv/global_attention_enhancement.md)
+
 ## [Reinforce Learning](./rl/index.md)
 
 ### On-policy vs Off-policy

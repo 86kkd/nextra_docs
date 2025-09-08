@@ -1,3 +1,5 @@
+# Genreal git command
+
 get the size of doc
 
 ```bash

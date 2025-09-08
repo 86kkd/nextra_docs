@@ -1,57 +1,285 @@
 ---
-title: "技术探索与知识分享"  
+title: "技术探索与知识分享"
 description: "深入研究AI/ML、强化学习、计算机视觉等前沿技术"
 ---
 
-import { HeroSection } from '../app/_components/hero-section'
-import { EnhancedFeature } from '../app/_components/features/enhanced-feature'
+import { Cards, Callout, Tabs, Steps } from 'nextra/components'
 
-
-{/* Hero section with animations and interactive effects */}
-<HeroSection />
-
-
-{/* Enhanced feature cards section */}
-<div className="max-w-6xl mx-auto px-6 py-20">
-  <h2 className="text-4xl font-bold text-center mb-12 gradient-text">
-    探索技术领域
-  </h2>
+<div style={{
+  background: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))',
+  padding: '4rem 2rem',
+  borderRadius: '1rem',
+  marginBottom: '3rem',
+  textAlign: 'center'
+}}>
+  <h1 style={{
+    fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+    fontWeight: '800',
+    marginBottom: '1.5rem',
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text'
+  }}>
+    技术探索与知识分享
+  </h1>
   
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-    <EnhancedFeature
-      title="Machine Learning"
-      description="深入探索机器学习算法，从基础的线性回归到复杂的深度神经网络，理解AI背后的数学原理。"
-      tags={["PyTorch", "TensorFlow", "Scikit-learn"]}
+  <p style={{
+    fontSize: '1.25rem',
+    color: '#6b7280',
+    maxWidth: '42rem',
+    margin: '0 auto 2rem'
+  }}>
+    深入研究 AI/ML、强化学习、计算机视觉等前沿技术
+    <br />
+    从理论到实践，探索技术的无限可能
+  </p>
+  
+  <div style={{
+    display: 'flex',
+    gap: '1rem',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
+  }}>
+    <a
       href="/Algorithm"
-      icon="🤖"
-      gradient="from-blue-500 to-cyan-500"
-      delay={0.1}
-    />
-    
-    <EnhancedFeature
-      title="Web Development"
-      description="现代Web开发技术栈，包括React、Next.js、TypeScript等前端框架，以及Node.js后端开发。"
-      tags={["React", "Next.js", "TypeScript"]}
-      href="/Development/Web"
-      icon="🌐"
-      gradient="from-green-500 to-teal-500"
-      delay={0.2}
-    />
-    
-    <EnhancedFeature
-      title="System & DevOps"
-      description="Linux系统管理、容器化技术、CI/CD流程，构建高效的开发运维环境。"
-      tags={["Docker", "K8s", "Linux"]}
-      href="/tricks"
-      icon="⚙️"
-      gradient="from-orange-500 to-red-500"
-      delay={0.3}
-    />
+      style={{
+        padding: '0.75rem 2rem',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        borderRadius: '0.5rem',
+        textDecoration: 'none',
+        fontWeight: '600',
+        display: 'inline-block',
+        transition: 'transform 0.2s',
+        boxShadow: '0 4px 14px 0 rgba(102, 126, 234, 0.4)'
+      }}
+    >
+      🚀 开始探索
+    </a>
+    <a
+      href="https://github.com"
+      style={{
+        padding: '0.75rem 2rem',
+        background: 'transparent',
+        color: 'inherit',
+        border: '2px solid #e5e7eb',
+        borderRadius: '0.5rem',
+        textDecoration: 'none',
+        fontWeight: '600',
+        display: 'inline-block',
+        transition: 'all 0.2s'
+      }}
+    >
+      <span style={{ marginRight: '0.5rem' }}>⭐</span>
+      GitHub
+    </a>
   </div>
 </div>
 
-## 最新文章
+<Callout type="info" emoji="💡">
+  **欢迎来到我的技术博客！** 这里记录了我在AI/ML、Web开发、系统运维等领域的学习笔记和实践经验。
+</Callout>
 
-探索前沿技术，分享实践经验。从机器学习到系统优化，记录技术成长的每一步。
+## 🎯 快速导航
 
----
+<Tabs items={['学习路径', '热门文章', '工具资源']}>
+  <Tabs.Tab>
+    <Cards num={2}>
+      <Cards.Card title="📚 算法基础" href="/Algorithm" arrow>
+        从零开始学习机器学习和深度学习算法
+      </Cards.Card>
+      <Cards.Card title="🛠️ 开发实践" href="/Development" arrow>
+        Web开发、系统运维、DevOps最佳实践
+      </Cards.Card>
+    </Cards>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <Cards num={2}>
+      <Cards.Card title="🔥 YOLO优化指南" href="/Algorithm/cv/yolo_small_object_detection_optimization" arrow>
+        小目标检测的挑战与解决方案
+      </Cards.Card>
+      <Cards.Card title="🌟 注意力机制" href="/Algorithm/cv/global_attention_enhancement" arrow>
+        Transformer在CV领域的应用
+      </Cards.Card>
+    </Cards>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <Cards num={2}>
+      <Cards.Card title="🔧 开发工具" href="/Development" arrow>
+        提升效率的开发工具推荐
+      </Cards.Card>
+      <Cards.Card title="📦 项目模板" href="/Development" arrow>
+        快速启动项目的模板集合
+      </Cards.Card>
+    </Cards>
+  </Tabs.Tab>
+</Tabs>
+
+## 🚀 技术栈
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+  gap: '1.5rem',
+  margin: '2rem 0'
+}}>
+  <div style={{
+    padding: '1.5rem',
+    background: 'linear-gradient(135deg, #667eea15, #764ba215)',
+    borderRadius: '1rem',
+    border: '1px solid rgba(102, 126, 234, 0.2)'
+  }}>
+    <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <span style={{ fontSize: '1.5rem' }}>🤖</span>
+      <span>机器学习</span>
+    </h3>
+    <p style={{ color: '#6b7280', fontSize: '0.95rem' }}>
+      PyTorch, TensorFlow, Scikit-learn
+    </p>
+    <a href="/Algorithm" style={{ color: '#667eea', textDecoration: 'none', fontSize: '0.9rem' }}>
+      探索更多 →
+    </a>
+  </div>
+  
+  <div style={{
+    padding: '1.5rem',
+    background: 'linear-gradient(135deg, #10b98115, #3b82f615)',
+    borderRadius: '1rem',
+    border: '1px solid rgba(16, 185, 129, 0.2)'
+  }}>
+    <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <span style={{ fontSize: '1.5rem' }}>🌐</span>
+      <span>Web 开发</span>
+    </h3>
+    <p style={{ color: '#6b7280', fontSize: '0.95rem' }}>
+      React, Next.js, TypeScript, Node.js
+    </p>
+    <a href="/Development/Web" style={{ color: '#10b981', textDecoration: 'none', fontSize: '0.9rem' }}>
+      探索更多 →
+    </a>
+  </div>
+  
+  <div style={{
+    padding: '1.5rem',
+    background: 'linear-gradient(135deg, #f59e0b15, #ef444415)',
+    borderRadius: '1rem',
+    border: '1px solid rgba(245, 158, 11, 0.2)'
+  }}>
+    <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+      <span style={{ fontSize: '1.5rem' }}>⚙️</span>
+      <span>DevOps</span>
+    </h3>
+    <p style={{ color: '#6b7280', fontSize: '0.95rem' }}>
+      Docker, Kubernetes, CI/CD, Linux
+    </p>
+    <a href="/tricks" style={{ color: '#f59e0b', textDecoration: 'none', fontSize: '0.9rem' }}>
+      探索更多 →
+    </a>
+  </div>
+</div>
+
+## 📚 学习路径
+
+<Steps>
+### 基础知识
+掌握Python编程、数学基础（线性代数、概率论、微积分）
+
+### 机器学习
+学习经典ML算法：线性回归、决策树、SVM、聚类等
+
+### 深度学习  
+神经网络、CNN、RNN、Transformer架构
+
+### 实战项目
+参与开源项目，构建端到端的AI应用
+</Steps>
+
+## 🏆 精选内容
+
+<Cards num={3}>
+  <Cards.Card title="计算机视觉" href="/Algorithm/cv">
+    **YOLO系列** • **Transformer** • **注意力机制**
+    
+    探索最新的CV算法和实践
+  </Cards.Card>
+  
+  <Cards.Card title="强化学习" href="/Algorithm/rl">
+    **Q-Learning** • **Policy Gradient** • **PPO**
+    
+    从基础到高级的RL算法实现
+  </Cards.Card>
+  
+  <Cards.Card title="系统设计" href="/Development">
+    **分布式系统** • **高并发** • **微服务**
+    
+    大规模系统架构设计经验
+  </Cards.Card>
+</Cards>
+
+## 🌟 最新动态
+
+<div style={{
+  background: 'linear-gradient(to right, #f3f4f6, #e5e7eb)',
+  padding: '1.5rem',
+  borderRadius: '0.75rem',
+  marginTop: '2rem'
+}}>
+  <h3 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <span>📰</span>
+    <span>近期更新</span>
+  </h3>
+  
+  - 🆕 **[2024.01]** 发布 YOLO 小目标检测优化完整指南
+  - 📝 **[2024.01]** 更新 Transformer 在计算机视觉中的应用
+  - 🔧 **[2023.12]** 添加现代代理协议详解文档
+  - 🚀 **[2023.12]** 优化网站性能，提升加载速度
+</div>
+
+## 💬 联系方式
+
+<div style={{
+  display: 'flex',
+  gap: '1rem',
+  justifyContent: 'center',
+  marginTop: '3rem',
+  flexWrap: 'wrap'
+}}>
+  <a href="https://github.com" style={{
+    padding: '0.5rem 1rem',
+    background: '#24292e',
+    color: 'white',
+    borderRadius: '0.5rem',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem'
+  }}>
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+    </svg>
+    GitHub
+  </a>
+  
+  <a href="mailto:example@email.com" style={{
+    padding: '0.5rem 1rem',
+    background: '#ea4335',
+    color: 'white',
+    borderRadius: '0.5rem',
+    textDecoration: 'none'
+  }}>
+    📧 Email
+  </a>
+  
+  <a href="#" style={{
+    padding: '0.5rem 1rem',
+    background: '#0088cc',
+    color: 'white',
+    borderRadius: '0.5rem',
+    textDecoration: 'none'
+  }}>
+    💬 Twitter
+  </a>
+</div>

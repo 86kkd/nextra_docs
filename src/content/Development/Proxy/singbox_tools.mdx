@@ -1,0 +1,258 @@
+# sing-box 配置生成器与工具集
+
+本页面提供 sing-box 相关的在线工具和资源。
+
+## 在线配置生成器
+
+我们提供了一个功能强大的在线配置生成器，可以帮助你快速创建 sing-box 的服务器和客户端配置。
+
+### 功能特性
+
+- 🔐 **自动生成强密码**：一键生成安全的密码和密钥
+- 📦 **批量配置生成**：同时生成服务器、客户端、Docker、Worker 配置
+- 💾 **一键下载**：将所有配置打包成 ZIP 文件下载
+- 🚀 **安装脚本**：自动生成服务器部署脚本
+
+### 使用方法
+
+点击下面的按钮打开配置生成器：
+
+<a href="/tools/config-generator.html" target="_blank" rel="noopener noreferrer" style={{
+  display: 'inline-block',
+  padding: '12px 24px',
+  backgroundColor: '#667eea',
+  color: 'white',
+  borderRadius: '8px',
+  textDecoration: 'none',
+  fontWeight: 'bold',
+  marginTop: '20px',
+  marginBottom: '20px'
+}}>
+  🚀 打开配置生成器（新版）
+</a>
+
+或者使用备用版本：
+- 新版（简化版）：`http://localhost:3000/tools/config-generator.html`
+- 原版（完整版）：`http://localhost:3000/tools/singbox-config-generator.html`
+
+### 生成的配置包含
+
+1. **服务器配置**
+   - `config.json` - sing-box 服务器配置文件
+   - `install.sh` - 一键安装脚本
+
+2. **客户端配置**
+   - `client-config.json` - 包含所有节点的客户端配置
+   - 支持 TUN 模式和 Web UI
+
+3. **Cloudflare Worker**
+   - 订阅服务脚本
+   - 自动包含所有服务器节点
+
+4. **Docker Compose**
+   - 容器化部署配置
+   - 包含自动证书续期
+
+## 配置示例
+
+### 基础 Trojan 服务器配置
+
+```json
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "trojan",
+      "tag": "trojan-in",
+      "listen": "::",
+      "listen_port": 443,
+      "users": [
+        {
+          "name": "user",
+          "password": "your-strong-password"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "your-domain.com",
+        "alpn": ["h2", "http/1.1"],
+        "certificate_path": "/path/to/cert.pem",
+        "key_path": "/path/to/key.pem"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ]
+}
+```
+
+### 客户端选择器配置
+
+```json
+{
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "proxy",
+      "outbounds": ["auto", "node1", "node2", "direct"],
+      "default": "auto"
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": ["node1", "node2"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    }
+  ]
+}
+```
+
+## 快速部署脚本
+
+### 一键安装 sing-box
+
+```bash
+# Debian/Ubuntu
+bash <(curl -fsSL https://sing-box.app/deb-install.sh)
+
+# 使用 Docker
+docker run -d \
+  --name sing-box \
+  --restart always \
+  --network host \
+  -v /etc/sing-box:/etc/sing-box \
+  ghcr.io/sagernet/sing-box \
+  run -c /etc/sing-box/config.json
+```
+
+### 证书申请
+
+```bash
+# 安装 certbot
+apt install -y certbot
+
+# 申请证书
+certbot certonly --standalone \
+  -d your-domain.com \
+  --email your@email.com \
+  --agree-tos \
+  --non-interactive
+```
+
+## 相关教程
+
+- [Trojan 多节点部署教程](/Development/Web/trojan_subscription_setup)
+- [节点切换配置指南](/Development/singbox_node_switching)
+- [多用户管理方案](/Development/singbox_multi_user_management)
+- [服务端搭建与 UI 管理](/Development/singbox_server_and_ui_guide)
+
+## 常用命令
+
+### 服务管理
+
+```bash
+# 启动服务
+systemctl start sing-box
+
+# 停止服务
+systemctl stop sing-box
+
+# 重启服务
+systemctl restart sing-box
+
+# 查看状态
+systemctl status sing-box
+
+# 查看日志
+journalctl -u sing-box -f
+```
+
+### 配置检查
+
+```bash
+# 验证配置文件
+sing-box check -c /etc/sing-box/config.json
+
+# 格式化配置文件
+sing-box format -c /etc/sing-box/config.json > formatted.json
+```
+
+## 性能优化
+
+### TCP 优化
+
+```bash
+# 添加到 /etc/sysctl.conf
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+net.ipv4.tcp_fastopen=3
+net.ipv4.tcp_syncookies=1
+net.ipv4.tcp_tw_reuse=1
+net.ipv4.tcp_fin_timeout=30
+net.ipv4.tcp_max_syn_backlog=8192
+
+# 应用配置
+sysctl -p
+```
+
+### 文件描述符限制
+
+```bash
+# 添加到 /etc/security/limits.conf
+* soft nofile 65535
+* hard nofile 65535
+```
+
+## 故障排查
+
+### 常见问题
+
+1. **端口被占用**
+   ```bash
+   lsof -i :443
+   kill -9 $(lsof -t -i:443)
+   ```
+
+2. **证书过期**
+   ```bash
+   # 手动续期
+   certbot renew
+   
+   # 设置自动续期
+   crontab -e
+   # 添加: 0 2 * * * certbot renew --quiet
+   ```
+
+3. **TUN 模式权限**
+   ```bash
+   # Linux
+   sudo setcap cap_net_admin=eip /usr/local/bin/sing-box
+   
+   # 或使用 root 运行
+   sudo sing-box run -c config.json
+   ```
+
+## 安全建议
+
+- ✅ 使用强密码（16位以上随机字符）
+- ✅ 定期更新 sing-box 版本
+- ✅ 启用证书自动续期
+- ✅ 限制 SSH 访问
+- ✅ 使用防火墙限制端口
+- ✅ 监控服务器日志
+- ✅ 定期备份配置文件
+
+## 更多资源
+
+- [sing-box 官方文档](https://sing-box.sagernet.org/)
+- [GitHub 仓库](https://github.com/SagerNet/sing-box)
+- [Telegram 群组](https://t.me/sing_box)
