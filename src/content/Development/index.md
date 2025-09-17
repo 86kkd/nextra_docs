@@ -30,6 +30,9 @@
 - [LangChain 实践](./rag/langchain.md)
 - [RAG 详细教程](./rag/detailed_walkthrough.md)
 
+### EDA & PCB
+- [AI在PCB自动布线中的研究与应用进展报告](./ai_pcb_routing_progress.md)
+
 ## Git & DevOps
 
 - [Git 使用技巧](./git/git.md)
@@ -40,6 +43,7 @@
 
 ## 最近更新
 
+- 🆕 [AI在PCB自动布线中的研究与应用进展报告](./ai_pcb_routing_progress.md) - AI/RL/GNN 在 PCB 布线的现状与趋势
 - 🆕 [YOLO vs DETR 小目标检测对比](../Algorithm/cv/yolo_vs_detr_small_object_detection.md) - 医疗细菌识别场景的架构选择
 - 🆕 [广播 IP vs 原生 IP](./Web/broadcast_vs_native_ip.md) - IDC 行业术语详解
 - 🆕 [sing-box 节点切换配置](./singbox_node_switching.md) - 实现类似 Clash Verge 的节点管理

@@ -459,6 +459,33 @@ async function handleRequest(request) {
   // 支持自定义参数（可选）
   const clientType = url.searchParams.get('client') || 'sing-box'  // 客户端类型
   const format = url.searchParams.get('format') || 'json'          // 返回格式
+  const mode = (url.searchParams.get('mode') || 'tun').toLowerCase() // 运行模式：tun | proxy
+  
+  // 根据 mode 选择入站：
+  // - tun（默认）：VPN/TUN 模式，适合 Android/iOS/桌面端全局接管
+  // - proxy：返回本地混合代理入站（mixed），适合不能用 TUN 的设备/场景
+  const inbounds = mode === 'proxy'
+    ? [
+      {
+        "type": "mixed",
+        "tag": "mixed-in",
+        "listen": "127.0.0.1",
+        "listen_port": 7890
+      }
+    ]
+    : [
+      {
+        "type": "tun",
+        "tag": "tun-in",
+        "inet4_address": "172.19.0.1/30",
+        "inet6_address": "fdfe:dcba:9876::1/126",
+        "auto_route": true,
+        "strict_route": true,
+        "sniff": true,
+        "sniff_override_destination": true,
+        "stack": "system"
+      }
+    ]
   
   // sing-box 客户端配置
   const config = {
@@ -487,19 +514,7 @@ async function handleRequest(request) {
       ],
       "final": "google"
     },
-    "inbounds": [
-      {
-        "type": "tun",
-        "tag": "tun-in",
-        "inet4_address": "172.19.0.1/30",
-        "inet6_address": "fdfe:dcba:9876::1/126",
-        "auto_route": true,
-        "strict_route": true,
-        "sniff": true,
-        "sniff_override_destination": true,
-        "stack": "system"
-      }
-    ],
+    "inbounds": inbounds,
     "outbounds": [
       {
         "type": "selector",
